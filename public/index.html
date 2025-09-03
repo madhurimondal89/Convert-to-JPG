@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pro Image Converter</title>
+    <title>Image Converter</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -11,6 +11,12 @@
 </head>
 <body>
     <main class="converter-app">
+        <!-- UPDATED: App Header Section -->
+        <header class="app-header">
+            <h1>Image Converter</h1>
+            <p>A professional-grade tool to convert PNG, GIF, WEBP, TIF to JPG with unparalleled quality.</p>
+        </header>
+
         <div class="upload-container">
             <div class="drop-zone" id="drop-zone">
                 <div class="drop-zone-content">
@@ -19,6 +25,8 @@
                     <p>or</p>
                     <label for="file-input" class="browse-btn">Browse Files</label>
                     <input type="file" id="file-input" multiple accept="image/*">
+                    <!-- UPDATED: Supported Formats Text -->
+                    <p class="supported-formats">PNG, GIF, WEBP, TIF, SVG Files are supported</p>
                 </div>
             </div>
             

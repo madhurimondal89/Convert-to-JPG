@@ -10,25 +10,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let filesMap = new Map();
 
-    // --- Event Listeners ---
-    dropZone.addEventListener('dragover', (e) => {
-        e.preventDefault();
-        dropZone.classList.add('drag-over');
-    });
-    dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
-    dropZone.addEventListener('drop', (e) => {
-        e.preventDefault();
-        dropZone.classList.remove('drag-over');
-        handleFiles(e.dataTransfer.files);
+    // --- Event Listeners Setup ---
+    ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => 
+        dropZone.addEventListener(eventName, preventDefaults, false)
+    );
+    ['dragenter', 'dragover'].forEach(eventName => 
+        dropZone.addEventListener(eventName, () => dropZone.classList.add('drag-over'), false)
+    );
+    ['dragleave', 'drop'].forEach(eventName => 
+        dropZone.addEventListener(eventName, () => dropZone.classList.remove('drag-over'), false)
+    );
+    dropZone.addEventListener('drop', handleDrop, false);
+
+    // UPDATED: Click listener to prevent double-trigger
+    dropZone.addEventListener('click', (e) => {
+        // Only trigger the file input click if the click was not on the "Browse Files" label/button.
+        // This prevents the file dialog from opening twice.
+        if (e.target.tagName !== 'INPUT' && !e.target.closest('.browse-btn')) {
+            fileInput.click();
+        }
     });
 
-    dropZone.addEventListener('click', () => fileInput.click());
     fileInput.addEventListener('change', () => handleFiles(fileInput.files));
     convertAllBtn.addEventListener('click', convertAllFiles);
     downloadAllBtn.addEventListener('click', downloadAllAsZip);
     clearAllBtn.addEventListener('click', clearAllFiles);
 
     // --- Core Functions ---
+    function preventDefaults(e) {
+        e.preventDefault();
+        e.stopPropagation();
+    }
+
+    function handleDrop(e) {
+        handleFiles(e.dataTransfer.files);
+    }
+
     function handleFiles(files) {
         for (const file of files) {
             if (file.type.startsWith('image/')) {
@@ -39,7 +56,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             }
         }
-        updateActionButtonsVisibility();
+        updateUIState();
     }
 
     function createFilePreview(file, fileId) {
@@ -58,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
         
         previewContainer.appendChild(clone);
     }
-
+    
     async function convertAllFiles() {
         convertAllBtn.disabled = true;
         downloadAllBtn.style.display = 'none';
@@ -91,7 +108,7 @@ document.addEventListener('DOMContentLoaded', () => {
             formData.append('image', file);
             
             const response = await fetch('/convert-single', { method: 'POST', body: formData });
-            if (!response.ok) throw new Error('Server conversion failed.');
+            if (!response.ok) throw new Error('Conversion failed on server.');
             
             const blob = await response.blob();
             const url = URL.createObjectURL(blob);
@@ -114,6 +131,7 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch (error) {
             filesMap.get(fileId).status = 'error';
             statusIndicator.innerHTML = '<svg class="status-icon error" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" x2="12" y1="8" y2="12"/><line x1="12" x2="12.01" y1="16" y2="16"/></svg>';
+            actionArea.innerHTML = 'Failed';
         }
     }
 
@@ -143,13 +161,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function clearAllFiles() {
         filesMap.clear();
         previewContainer.innerHTML = '';
-        updateActionButtonsVisibility();
+        updateUIState();
         downloadAllBtn.style.display = 'none';
         fileInput.value = ''; // Reset file input
     }
     
-    // --- Helper Functions ---
-    function updateActionButtonsVisibility() {
+    function updateUIState() {
         if (filesMap.size > 0) {
             actionButtonsContainer.style.display = 'grid';
         } else {

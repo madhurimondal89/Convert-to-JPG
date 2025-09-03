@@ -31,6 +31,24 @@ body {
     max-width: 800px;
 }
 
+/* App Header Styling */
+.app-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+.app-header h1 {
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+.app-header p {
+    font-size: 1rem;
+    color: var(--dark-grey);
+    max-width: 550px;
+    margin: 0 auto;
+}
+
 .upload-container {
     background: var(--white);
     border-radius: var(--border-radius);
@@ -65,7 +83,15 @@ body {
 }
 .browse-btn:hover { background-color: var(--primary-hover); }
 
-/* Preview Container */
+/* Supported Formats Text Styling */
+.supported-formats {
+    margin-top: 15px;
+    font-size: 0.8rem;
+    color: #a0aec0;
+    font-weight: 500;
+}
+
+/* Preview Container & Item Layout Fix */
 .preview-container { margin-top: 20px; }
 .file-preview-item {
     display: flex;
@@ -75,20 +101,45 @@ body {
     padding: 15px;
     margin-bottom: 10px;
     animation: fadeIn 0.5s ease;
+    gap: 15px; /* Ensures space between all items */
 }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
 .thumbnail {
     width: 50px;
     height: 50px;
     border-radius: 6px;
     object-fit: cover;
-    margin-right: 15px;
+    flex-shrink: 0; /* Prevents the thumbnail from shrinking */
 }
-.file-details { flex-grow: 1; }
-.file-name { font-weight: 600; font-size: 0.9rem; word-break: break-all; }
+
+.file-details {
+    flex-grow: 1; /* Takes up available space */
+    min-width: 0; /* Important for flexbox to allow shrinking of content */
+}
+
+.file-name {
+    font-weight: 600;
+    font-size: 0.9rem;
+    white-space: nowrap; /* Prevents long names from wrapping */
+    overflow: hidden; /* Hides the part that overflows */
+    text-overflow: ellipsis; /* Adds "..." to indicate more text */
+}
 .file-size { font-size: 0.8rem; color: var(--dark-grey); }
-.status-indicator, .action-area { width: 30px; height: 30px; display: flex; justify-content: center; align-items: center; margin-left: 15px; flex-shrink: 0; }
-.action-area { width: auto; }
+
+.status-indicator, .action-area {
+    width: auto; /* Let content define the width */
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0; /* Prevents these areas from shrinking */
+}
+
+.action-area {
+    min-width: 100px; /* Ensures enough space for the download button */
+    justify-content: flex-end; /* Aligns download button to the right */
+}
 
 /* Status Icons */
 .spinner {
@@ -149,7 +200,4 @@ body {
     body { padding: 15px; }
     .upload-container { padding: 20px; }
     .action-buttons { grid-template-columns: 1fr; }
-    .file-preview-item { flex-wrap: wrap; }
-    .file-details { width: calc(100% - 70px); }
-    .status-indicator, .action-area { margin-top: 10px; width: 50%; justify-content: flex-start; }
 }
