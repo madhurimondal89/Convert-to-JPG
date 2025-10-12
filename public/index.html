@@ -11,11 +11,8 @@
 </head>
 <body>
     <main class="converter-app">
-        <!-- UPDATED: App Header Section -->
         <header class="app-header">
-            <!-- ========== পরিবর্তনটি এখানে করা হয়েছে ========== -->
             <img src="icon.png" alt="App Icon" class="app-icon">
-            
             <h1>Image Converter</h1>
             <p>A professional-grade tool to convert PNG, GIF, WEBP, TIF to JPG with unparalleled quality.</p>
         </header>
@@ -23,19 +20,16 @@
         <div class="upload-container">
             <div class="drop-zone" id="drop-zone">
                 <div class="drop-zone-content">
-                    <svg class="upload-icon" xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" x2="12" y1="3" y2="15"/></svg>
+                    <img src="upload.png" alt="Upload Icon" class="upload-icon">
                     <h3>Drag & Drop files here</h3>
                     <p>or</p>
                     <label for="file-input" class="browse-btn">Browse Files</label>
                     <input type="file" id="file-input" multiple accept="image/*">
-                    <!-- UPDATED: Supported Formats Text -->
                     <p class="supported-formats">PNG, GIF, WEBP, TIF, SVG Files are supported</p>
                 </div>
             </div>
             
-            <div class="preview-container" id="preview-container">
-                <!-- File previews will be generated here by JavaScript -->
-            </div>
+            <div class="preview-container" id="preview-container"></div>
             
             <div class="action-buttons" id="action-buttons">
                 <button id="convert-all-btn" class="action-btn convert">Convert All to JPG</button>
@@ -48,7 +42,6 @@
         </div>
     </main>
     
-    <!-- Template for file preview item -->
     <template id="file-preview-template">
         <div class="file-preview-item">
             <img class="thumbnail" src="" alt="Preview">
@@ -56,12 +49,8 @@
                 <p class="file-name">filename.png</p>
                 <p class="file-size">128 KB</p>
             </div>
-            <div class="status-indicator">
-                <!-- Status will be updated here: Spinner, Checkmark, Error icon -->
-            </div>
-            <div class="action-area">
-                <!-- Download button will appear here -->
-            </div>
+            <div class="status-indicator"></div>
+            <div class="action-area"></div>
         </div>
     </template>
     

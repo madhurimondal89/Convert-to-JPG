@@ -31,20 +31,16 @@ body {
     max-width: 800px;
 }
 
-/* App Header Styling */
 .app-header {
     text-align: center;
     margin-bottom: 30px;
 }
-
-/* ========== পরিবর্তনটি এখানে করা হয়েছে ========== */
 .app-icon {
     width: 64px;
     height: 64px;
-    margin-bottom: 1rem; /* 16px space between icon and title */
+    margin-bottom: 1rem;
     object-fit: contain;
 }
-
 .app-header h1 {
     font-size: 2.25rem;
     font-weight: 700;
@@ -65,7 +61,6 @@ body {
     padding: 30px;
 }
 
-/* Drop Zone */
 .drop-zone {
     border: 2px dashed var(--medium-grey);
     border-radius: var(--border-radius);
@@ -78,7 +73,12 @@ body {
     background-color: var(--light-grey);
     border-color: var(--primary-color);
 }
-.drop-zone-content .upload-icon { color: var(--primary-color); margin-bottom: 15px; }
+.drop-zone-content .upload-icon {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 15px;
+}
 .drop-zone-content h3 { font-size: 1.2rem; margin-bottom: 5px; }
 .drop-zone-content p { color: var(--dark-grey); margin-bottom: 15px; }
 #file-input { display: none; }
@@ -92,7 +92,6 @@ body {
 }
 .browse-btn:hover { background-color: var(--primary-hover); }
 
-/* Supported Formats Text Styling */
 .supported-formats {
     margin-top: 15px;
     font-size: 0.8rem;
@@ -100,7 +99,6 @@ body {
     font-weight: 500;
 }
 
-/* Preview Container & Item Layout Fix */
 .preview-container { margin-top: 20px; }
 .file-preview-item {
     display: flex;
@@ -110,47 +108,45 @@ body {
     padding: 15px;
     margin-bottom: 10px;
     animation: fadeIn 0.5s ease;
-    gap: 15px; /* Ensures space between all items */
+    gap: 15px;
 }
-@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
 .thumbnail {
     width: 50px;
     height: 50px;
     border-radius: 6px;
     object-fit: cover;
-    flex-shrink: 0; /* Prevents the thumbnail from shrinking */
+    flex-shrink: 0;
 }
 
 .file-details {
-    flex-grow: 1; /* Takes up available space */
-    min-width: 0; /* Important for flexbox to allow shrinking of content */
+    flex-grow: 1;
+    min-width: 0;
 }
 
 .file-name {
     font-weight: 600;
     font-size: 0.9rem;
-    white-space: nowrap; /* Prevents long names from wrapping */
-    overflow: hidden; /* Hides the part that overflows */
-    text-overflow: ellipsis; /* Adds "..." to indicate more text */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .file-size { font-size: 0.8rem; color: var(--dark-grey); }
 
 .status-indicator, .action-area {
-    width: auto; /* Let content define the width */
+    width: auto;
     height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
-    flex-shrink: 0; /* Prevents these areas from shrinking */
+    flex-shrink: 0;
 }
 
 .action-area {
-    min-width: 100px; /* Ensures enough space for the download button */
-    justify-content: flex-end; /* Aligns download button to the right */
+    min-width: 100px;
+    justify-content: flex-end;
 }
 
-/* Status Icons */
 .spinner {
     width: 24px;
     height: 24px;
@@ -164,7 +160,6 @@ body {
 .success { color: var(--success-color); }
 .error { color: var(--error-color); }
 
-/* Action Buttons */
 .action-buttons {
     display: none;
     grid-template-columns: 1fr 1fr 1fr;
@@ -190,7 +185,6 @@ body {
 .action-btn.download-zip { background: var(--success-color); color: var(--white); display: none; }
 .action-btn.clear { background: var(--medium-grey); color: var(--dark-grey); }
 
-/* Download Link */
 .download-link {
     display: inline-flex;
     align-items: center;
