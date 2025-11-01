@@ -3,19 +3,38 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Converter</title>
+
+    <!-- ========== SEO পরিবর্তনগুলো এখানে করা হয়েছে ========== -->
+    <title>Image Converter - Convert PNG, GIF, WEBP to JPG Online Free</title>
+    <meta name="description" content="A fast and free online tool to convert any image format like PNG, GIF, WEBP, TIF, and SVG to high-quality JPG. Drag and drop your files to start converting instantly.">
+    <meta name="keywords" content="image converter, convert to jpg, png to jpg, gif to jpg, webp to jpg, image to jpg, online converter">
+    <!-- ======================================================= -->
+    
+    <link rel="icon" type="image/png" href="icon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+    <header class="site-header">
+        <div class="header-content">
+            <a href="/" class="logo">
+                <img src="logo.png" alt="ImageCompress Logo">
+            </a>
+            <nav class="main-nav">
+                <a href="https://www.imagecompress.in/" target="_blank">Home</a>
+            </nav>
+        </div>
+    </header>
+
     <main class="converter-app">
-        <header class="app-header">
-            <img src="icon.png" alt="App Icon" class="app-icon">
-            <h1>Image Converter</h1>
+        <div class="intro-text">
+            <h2>Convert any Image to JPG</h2>
             <p>A professional-grade tool to convert PNG, GIF, WEBP, TIF to JPG with unparalleled quality.</p>
-        </header>
+        </div>
 
         <div class="upload-container">
             <div class="drop-zone" id="drop-zone">
@@ -41,6 +60,20 @@
             </div>
         </div>
     </main>
+
+    <footer class="site-footer">
+        <div class="footer-content">
+            <p class="copyright">&copy; 2025 imagecompress.in All Rights Reserved.</p>
+            <nav class="footer-nav">
+                <a href="https://www.imagecompress.in/about-us/" target="_blank">About Us</a>
+                <a href="https://www.imagecompress.in/contact-us/" target="_blank">Contact Us</a>
+                <a href="https://www.imagecompress.in/disclaimer/" target="_blank">Disclaimer</a>
+                <a href="https://www.imagecompress.in/dmca-policy/" target="_blank">DMCA Policy</a>
+                <a href="https://www.imagecompress.in/privacy-policy/" target="_blank">Privacy Policy</a>
+                <a href="https://www.imagecompress.in/terms-and-conditions/" target="_blank">Terms and Conditions</a>
+            </nav>
+        </div>
+    </footer>
     
     <template id="file-preview-template">
         <div class="file-preview-item">
